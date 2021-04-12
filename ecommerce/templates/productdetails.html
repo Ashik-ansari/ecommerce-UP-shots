@@ -1,0 +1,416 @@
+<script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+<style>
+
+
+	
+	
+	.img-zoom-container {
+	  position: relative;
+	}
+	
+	.img-zoom-lens {
+	  position: absolute;
+	  border: 1px solid #d4d4d4;
+	  /*set the size of the lens:*/
+	  width: 70px;
+	  height: 70px;
+	}
+	
+	.img-zoom-result { 
+	  margin-top: 10px;		
+	  border: 1px solid #d4d4d4;
+	  /*set the size of the result div:*/
+	  width: 300px;
+	  height: 300px;
+	}
+	
+
+
+</style>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Product Details | E-Shopper</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						
+					</div>
+					
+				</div>
+			</div>
+		
+			<div class="header-middle"><!--header-middle-->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 clearfix">
+							<div class="logo pull-left">
+								<a href=""><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+							</div>
+							
+						</div>
+		
+					</div>
+				</div>
+			</div><!--/header-middle-->
+	
+		
+	</header><!--/header-->
+	
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div id="myresult" class="img-zoom-result" ></div>
+				</div>
+				
+				<div class="col-sm-9 padding-right">
+					
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5"  >
+							<div class="view-product" class="img-zoom-container">
+								
+								<div id="img-continer">
+									
+									<img   id="myimage"  src="{{ products.imageurl }}" alt="" width="200" height="300"  />
+								</div>		
+							</div>
+							
+
+							
+
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+								
+								  <!-- Wrapper for slides -->
+								    <div class="carousel-inner">
+										<div class="item active">
+										  <a href=""><img src="{{ products.imageurl1 }}" alt=""  width="75" height="90"></a>
+										  <a href=""><img src="{{ products.imageurl2 }}" alt=""  width="75" height="90"></a>
+										  <a href=""><img src="{{ products.imageurl }}" alt=""  width="75" height="90"></a>
+										</div>
+										
+										
+									</div>
+
+								  <!-- Controls -->
+								 <!--<a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>-->
+							</div>
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								
+								<h2>{{ products.productname }}</h2>
+								<p>{{ products.description }}</p>
+								
+								<span>
+									<span>₹ {{ products.price }}</span>
+									
+								
+									<button type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+									<br>
+									<button type="button" class="btn btn-fefault cart">
+										<i class="fas fa-bolt"></i>
+										Buy Now
+									</button>
+								</span>
+								
+								
+								
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+					
+					
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<footer id="footer"><!--Footer-->
+		
+		
+	
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+				</div>
+			</div>
+		</div>
+		
+	</footer><!--/Footer-->
+	
+
+  
+    <script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/price-range.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+	<!--<script>
+		var zoomImg = document.getElementById("zoomImg")
+		function zoom(e){
+			var zoomer = e.currentTarget;
+			
+			e.offsetX ? (offsetX = e.offsetX) : (offsetX[0] = e.pageX);
+			e.offsetY ? (offsetY = e.offsetY) : (offsetX[0] = e.pageX);
+			x = (offsetX / zoomer.offsetWidth) * 100;
+			y = (offsetY / zoomer.offsetHeight) * 100;
+			zoomer.style.backgroundPosition = x + "%" + " " + y + "%";
+		}
+	</script>-->		
+
+
+
+
+
+	<!-- <script>
+		document.getElementById('img-container').addEventListener('mouseover', function(){
+			imageZoom('featured')
+			
+		})
+		
+		function imageZoom(imgID){
+			let img = document.getElementById(imgID)
+			let lens = document.getElementById('lens')
+		
+			lens.style.backgroundImage = `url( ${img.src} )`
+		
+			let ratio = 3
+		
+			lens.style.backgroundSize = (img.width * ratio) + 'px ' + (img.height * ratio) + 'px';
+		
+			img.addEventListener("mousemove", moveLens)
+			lens.addEventListener("mousemove", moveLens)
+			img.addEventListener("touchmove", moveLens)
+		
+			function moveLens(){
+				/*
+				Function sets sets position of lens over image and background image of lens
+				1 - Get cursor position
+				2 - Set top and left position using cursor position - lens width & height / 2
+				3 - Set lens top/left positions based on cursor results
+				4 - Set lens background position & invert
+				5 - Set lens bounds
+			
+				*/
+		
+				//1
+				let pos = getCursor()
+				//console.log('pos:', pos)
+		
+				//2
+				let positionLeft = pos.x - (lens.offsetWidth / 2)
+				let positionTop = pos.y - (lens.offsetHeight / 2)
+		
+				//5
+				if(positionLeft < 0 ){
+					positionLeft = 0
+				}
+		
+				if(positionTop < 0 ){
+					positionTop = 0
+				}
+		
+				if(positionLeft > img.width - lens.offsetWidth /3 ){
+					positionLeft = img.width - lens.offsetWidth /3
+				}
+		
+				if(positionTop > img.height - lens.offsetHeight /3 ){
+					positionTop = img.height - lens.offsetHeight /3
+				}
+		
+		
+				//3
+				lens.style.left = positionLeft + 'px';
+				lens.style.top = positionTop + 'px';
+		
+				//4
+				lens.style.backgroundPosition = "-" + (pos.x * ratio) + 'px -' +  (pos.y * ratio) + 'px'
+			}
+		
+			function getCursor(){
+				/* Function gets position of mouse in dom and bounds
+				 of image to know where mouse is over image when moved
+				
+				1 - set "e" to window events
+				2 - Get bounds of image
+				3 - set x to position of mouse on image using pageX/pageY - bounds.left/bounds.top
+				4- Return x and y coordinates for mouse position on image
+				
+				 */
+		
+				let e = window.event
+				let bounds = img.getBoundingClientRect()
+		
+				//console.log('e:', e)
+				//console.log('bounds:', bounds)
+				let x = e.pageX - bounds.left
+				let y = e.pageY - bounds.top
+				x = x - window.pageXOffset;
+				y = y - window.pageYOffset;
+				
+				return {'x':x, 'y':y}
+			}
+		
+		}
+		
+		imageZoom('featured')
+		
+	</script>
+
+
+
+<script>
+	let thumbnails = document.getElementsByClassName('thumbnail')
+
+let activeImages = document.getElementsByClassName('active')
+
+for (var i=0; i < thumbnails.length; i++){
+
+	thumbnails[i].addEventListener('click', function(){
+		console.log(activeImages)
+		
+		if (activeImages.length > 0){
+			activeImages[0].classList.remove('active')
+		}
+		
+
+		this.classList.add('active')
+		document.getElementById('featured').src = this.src
+	})
+}
+
+
+let buttonRight = document.getElementById('slideRight');
+let buttonLeft = document.getElementById('slideLeft');
+
+buttonLeft.addEventListener('click', function(){
+	document.getElementById('slider').scrollLeft -= 180
+})
+
+buttonRight.addEventListener('click', function(){
+	document.getElementById('slider').scrollLeft += 180
+})
+</script> -->
+
+<!---imagezoom-->
+
+
+
+	<script>
+		function imageZoom(imgID, resultID) {
+		  var img, lens, result, cx, cy;
+		  img = document.getElementById(imgID);
+		  result = document.getElementById(resultID);
+		  /*create lens:*/
+		  lens = document.createElement("DIV");
+		  lens.setAttribute("class", "img-zoom-lens");
+		  /*insert lens:*/
+		  img.parentElement.insertBefore(lens, img);
+		  /*calculate the ratio between result DIV and lens:*/
+		  cx = result.offsetWidth / lens.offsetWidth;
+		  cy = result.offsetHeight / lens.offsetHeight;
+		  /*set background properties for the result DIV:*/
+		  result.style.backgroundImage = "url('" + img.src + "')";
+		  result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+		  /*execute a function when someone moves the cursor over the image, or the lens:*/
+		  lens.addEventListener("mousemove", moveLens);
+		  img.addEventListener("mousemove", moveLens);
+		  /*and also for touch screens:*/
+		  lens.addEventListener("touchmove", moveLens);
+		  img.addEventListener("touchmove", moveLens);
+		  function moveLens(e) {
+			var pos, x, y;
+			/*prevent any other actions that may occur when moving over the image:*/
+			e.preventDefault();
+			/*get the cursor's x and y positions:*/
+			pos = getCursorPos(e);
+			/*calculate the position of the lens:*/
+			x = pos.x - (lens.offsetWidth / 2);
+			y = pos.y - (lens.offsetHeight / 2);
+			/*prevent the lens from being positioned outside the image:*/
+			if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+			if (x < 0) {x = 0;}
+			if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+			if (y < 0) {y = 0;}
+			/*set the position of the lens:*/
+			lens.style.left = x + "px";
+			lens.style.top = y + "px";
+			/*display what the lens "sees":*/
+			result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+			console.log(x,y,cx,cy)
+		  }
+		  function getCursorPos(e) {
+			var a, x = 0, y = 0;
+			e = e || window.event;
+			/*get the x and y positions of the image:*/
+			a = img.getBoundingClientRect();
+			/*calculate the cursor's x and y coordinates, relative to the image:*/
+		
+			x = e.pageX - a.left;
+			y = e.pageY - a.top;
+			/*consider any page scrolling:*/
+			x = x - window.pageXOffset;
+			y = y - window.pageYOffset;
+			return {x : x, y : y};
+		  }
+		}
+		</script>
+
+		<script>
+			// Initiate zoom effect:
+			imageZoom("myimage", "myresult");
+			</script>
+
+
+</body>
+</html>

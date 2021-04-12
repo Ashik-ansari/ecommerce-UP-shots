@@ -1,0 +1,107 @@
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+
+<style>
+.btn-danger {
+color: #fff !important;
+background: #d9534f !important;
+border-color: #d9534f !important;
+box-shadow:none !important;
+
+}
+</style>
+
+
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <h3><i class="fa fa-angle-right"></i> </h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+            
+             
+                  <div class="form">
+                      <div class="note">
+                          <h3></h3>
+                      </div>
+
+                    </div>
+                
+                <div class="row main-content">
+                    <div class="container-fluid content-top-gap">
+                        <div class="column">
+                            <h1>Add Category</h1>
+                            
+                            <form style="width: 20em" method="POST" action="/admin1/addcategory/" >
+                             {% csrf_token %}
+                                <div class="form-group">
+                                {% for message in messages %}
+                                <h5> {{message}} </h5>
+                                {% endfor %}
+                                    <label for="category-name">Name:</label>
+                                    <input type="text" name="category-name" class="form-control" id="category-name"
+                                           placeholder="Category Name" required>
+                                        <span style="width: 100%;" id="category-error"></span>
+                                
+                                    <button type="submit" class="btn btn-success mt-2" onclick="addCategory()" >Add</button>
+
+                                    <!--<a href="{% url 'adminhome' %} "class="btn btn-danger btn-xs" data-title="cancel"></a>-->
+                
+                
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                      
+                      </div>
+                  </div>
+                
+            </section><! --/wrapper -->
+          </section>    
+
+
+
+
+
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script>
+    function addCategory() {
+        var category = $('#category-name').val()
+        if (category == "") {
+
+            $('#category-error').html("Please type a catergory name")
+        } 
+        else {
+            console.log('haiiiiiii')
+            $.ajax({
+                url: '/admin1/addcategory/',
+                method: 'POST',
+                data: {'category1': category},
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 'true') {
+                        alert("category added")
+                        window.location.replace('addcategory/')
+                    }
+                    if (data == 'false') {
+                        $('#category-error').html("This category already exists")
+                    }
+
+                }
+            })
+        }
+    }
+</script>-->
+
+{% endblock %}
+
+
+   
+

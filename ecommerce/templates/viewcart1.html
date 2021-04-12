@@ -1,0 +1,99 @@
+{% load static %}
+<div class="row">
+    {% if carts|length > 0 %}
+        <div class="col-md-8 p-3" id="cart-parent">
+            {% for cart in carts %}
+                <div class="card shadow mt-1" style="height: 9em;" id="{{ cart.id }}-card">
+                    <div class="card-horizontal" style="display: flex">
+                        <div class="img-square-wrapper border">
+                           <a href=""> <img class="img-fluid zoom" style="width: 8em; height: 9em;"
+                                 src="{{ cart.product.imageurl }}"
+                                    alt="Card image cap"></a>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="col-md-6 mt-1">
+                                    <a style="text-decoration: none; color: black" href=""><h6 class="card-title mt-1">{{ cart.product.productname }}</h6>
+                                        <p>{{cart.product.description}}</p>
+                                    </a>
+                                    
+                                </div>
+                                <div class="col-md-3">PRICE: {{ cart.product.price }}
+                                    <br>
+                                    TOTAL AMOUNT: <p id="{{ cart.id }}-price">{{ cart.total }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p class="small muted text-center">QTY:<span id="{{ cart.id }}-quantity"
+                                                                                         class="mt-1 card-title text-success">{{ cart.quantity }}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a style="size: 2em; color: rgb(21, 131, 48)" class="btn"
+                                               onclick="addQuantity({{ cart.id }})">+</a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a style="size: 2em; color: red;" class="btn"
+                                               onclick="reduceQuantity({{ cart.id }})">-</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'removecart' cart.id %}">
+                                        <button class="btn btn-danger">REMOVE ITEM</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <div style="margin-left: 3em;" class="shadow card mt-5">
+                <div class="card-body text-center">
+                    <h5 class="card-title">AMOUNT DETAILS</h5>
+                    <p class="card-text">
+                        Total Amount for your products:<br>
+                        <strong id="total-amount">{{ total }} </strong> rs
+                    </p>
+                    <a href="">
+                        <button style="background-color: orangered" class="btn text-white">Place order</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 8em" class="toast-container position-absolute top-0 end-0 p-3">
+
+            <!-- Then put toasts within -->
+            <div class="toast" role="alert" aria-live="assertive"
+                 aria-atomic="true">
+                <div class="toast-header">
+                    {#                    <img src="..." class="rounded me-2" alt="...">#}
+                    <strong class="me-auto">Shopify-Alert</strong>
+                    <small class="text-muted">just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body ">
+                    Your quantity exceeds limit
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card mt-5 text-center">
+                <img src="" alt="">
+                <h5>Sorry there is no items in your cart</h5>
+                <a href="{% url 'index' %}">
+                    <button style="background-color: orangered; margin-bottom: 2em" class="btn text-white">Continue
+                        Shopping
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+
+    {% endif %}
+</div>

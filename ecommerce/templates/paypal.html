@@ -1,0 +1,82 @@
+
+
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  </head>
+    <style>
+      body {
+        text-align: center;
+        padding: 40px 0;
+        background: #EBF0F5;
+      }
+        h1 {
+          color: #88B04B;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+    </style>
+    <body>
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <!-- <i class="checkmark">✓</i> -->
+      </div>
+      <div id="paypal-button-container"></div>
+
+      <!-- Include the PayPal JavaScript SDK -->
+      <script src="https://www.paypal.com/sdk/js?client-id=AZloQ9OuOJlzDHDMarWaErT1R0dmxFxZB7qewYpP1umZpTrjT9d37yuI_UomMMvVRj7_cXVdAPjDR-j1&currency=USD"></script>
+  
+      <script>
+          // Render the PayPal button into #paypal-button-container
+          paypal.Buttons({
+  
+              // Set up the transaction
+              createOrder: function(data, actions) {
+                  return actions.order.create({
+                      purchase_units: [{
+                          amount: {
+                              value: '{{totals}}'
+                          }
+                      }]
+                  });
+              },
+  
+              // Finalize the transaction
+              onApprove: function(data, actions) {
+                  return actions.order.capture().then(function(details) {
+                      // Show a success message to the buyer
+                      alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                      window.location.replace('/paypalsuccess/')
+                  });
+              }
+  
+  
+          }).render('#paypal-button-container');
+      </script>
+
+
+      </div>
+    </body>
+</html>

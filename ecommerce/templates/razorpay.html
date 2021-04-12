@@ -1,0 +1,24 @@
+<html>
+    <head>razorpay</head>
+    <body>
+        <form action="/razorpaysuccess/" method="POST">
+            <script
+                src="https://checkout.razorpay.com/v1/checkout.js"
+                data-key="rzp_test_qPNErtkWHr47LU"
+                data-amount="{% widthratio totals 1 100 %}"  
+                data-currency="INR" 
+                
+                data-buttontext="Pay with Razorpay"
+                data-name="{{cart.user.first_name}}"
+                data-description=""
+                data-image="https://example.com/your_logo.jpg"
+                data-prefill.name="{{cart.user.first_name}}"
+                data-prefill.email="{{cart.user.email}}"
+                data-theme.color="#F37254"
+            ></script>
+            <input type="hidden" custom="Hidden Element" name="hidden">
+            </form>
+            
+        
+    </body>
+</html>

@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login | E-Shopper</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %} ">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+</head><!--/head-->
+<style>
+.error{
+	color: darkred;
+	}
+</style>
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+								<li><a href=""><i class="fa fa-envelope"></i> /a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href=""><i class="fa fa-facebook"></i></a></li>
+								<li><a href=""><i class="fa fa-twitter"></i></a></li>
+								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
+								<li><a href=""><i class="fa fa-dribbble"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+						</div>
+						
+					</div>
+					<div class="col-md-8 clearfix">
+						
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+	</header>
+
+
+
+
+    <section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+                        
+						<!--<input type="button" id="otp" class="btn btn-danger" value="OTP login" />-->
+
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						<form>
+							{% csrf_token %}
+							<input type="text" id="first_name" name="first_name"  placeholder="first_name" />
+							<input type="text" id="last_name" name="last_name" placeholder="last_name"/>
+							<input type="text" id="username1"  placeholder="username"/>
+							<input type="email" id="email" name="email" placeholder="Email Address"/>
+							<input type="number" id="mobile" name="mobile" placeholder="mobile_number"/>
+							<input type="password" id="password1" name="password1" placeholder="password"/>
+							<input type="password" id="password2" name="password2" placeholder="confirm Password"/>
+
+							<span id="error1" class="error" > </span>
+
+							<button type="button" id="btn2" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/price-range.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	
+	<script>
+		$('#btn2').click(function(){
+			console.log("plot")
+			var first_name=$('#first_name').val()
+			var last_name=$('#last_name').val()
+			var username=$('#username1').val()
+			var email=$('#email').val()
+			var mobile=$('#mobile').val()
+			var atposition=email.indexOf('@')
+			var dotposition=email.indexOf('.')
+			var password1=$('#password1').val()
+			var password2=$('#password2').val()
+			
+	
+			var data = {
+				'csrfmiddlewaretoken' : '{{csrf_token}}',
+				'first1' :first_name,
+				'last1' :last_name,
+				'user1' :username,
+				'email1' :email,
+				'mobile1' :mobile,
+				'pass1' :password1,
+				'pass2' :password2,              
+	
+			}
+			if (first_name === ""){
+				$('#error1').html("enter firstname")
+			}
+			else if (last_name === ""){
+				$('#error1').html("enter lastname")
+			}
+			else if (username === ""){
+				$('#error1').html("enter username")
+				console.log("haii")
+			}
+			else if (email === ""){
+				$('#error1').html("enter email")
+			}
+			else if (atposition<2 ||dotposition<atposition+2 || dotposition+2>=email.length){
+				$('#error1').html("enter enter valid email")
+			}
+			else if (mobile === ""){
+				$('#erro1').html("enter mobile number")
+			}
+			else if (password1 === ""){
+				$('#error1').html("enter password")
+			}
+			else if (password2 === ""){
+				$('#error1').html("enter confirm password")
+			}
+			else{
+				console.log('hi')
+				$.ajax({
+					
+					url:'/user_referal/'+'{{user.id}}/',
+					method:'POST',
+					data: data,
+					dataType: 'json',
+					
+					success:function(data){
+						if(data =="true"){
+							alert("user registered");
+							window.location.replace('/login/')
+						}
+						else if (data == "false1"){
+							$("#error1").html('firstname already exist')
+						}
+						else if (data == "false2"){
+							$("#error1").html('lastname already exist')
+						}
+						else if (data == "false3"){
+							$("#error1").html('username already exist')
+						}
+						else if (data == "false4"){
+							$("#error1").html('password mismatching')
+						}
+						else if (data == "false5"){
+							$('#error1').html('This number already exist')
+						}
+						
+						
+	
+					}
+				})
+			}
+	
+	
+		})
+	
+	
+	</script>
+
+<!--login-->
+
+	<script>
+		$('#btn1').click(function(){
+			var username1 = $('#username').val()
+			var password1= $('#password').val()
+			var data ={
+				'csrfmiddlewaretoken' : '{{csrf_token}}',
+				'username' : username1,
+				'password' : password1,
+				}
+			if (username1 === "") {
+				$('#passerror').html("enter username")
+		
+			}
+			else if (password1 === ""){
+				$('#passerror').html("enter password")
+			}
+			else{
+				console.log("hloo")
+				$.ajax({
+					url:'/login/',
+					method:'POST',
+					data: data,
+					dataType:'json',
+					success:function(data){
+						if (data=='true'){
+							alert("user login");
+							window.location.replace('/')
+						}
+						if(data=='false'){
+							$("#passerror").html("user Name or password wrong")
+						}
+						if(data=='block'){
+							$("#passerror").html("you are blocked contact upshots")
+						}
+						
+					}
+				})
+		
+			}
+		})
+		
+		</script>
+
+
+
+
+</body>
+</html>

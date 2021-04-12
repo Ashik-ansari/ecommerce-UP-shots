@@ -1,0 +1,210 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Checkout | E-Shopper</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+						</div>
+						
+					</div>
+					<div class="col-md-8 clearfix">
+						<div class="shop-menu clearfix pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="{% url 'userprofile' %}"><i class="fa fa-user"></i> Account</a></li>
+								
+								
+								<li><a href="{% url 'cartview' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		
+	</header><!--/header-->
+<style>
+.box {
+	height: 150px;
+	width: 450px;
+}
+</style>
+
+<!--address table-->
+<div class="container-fluid">
+	
+  	<h5 style="padding-left: 10px;">select shipping address </h5>
+  	<p> </p>
+	  
+  <div class="row">
+	{% for add in address %}
+    <div class="col-md-6" class="box" style="background-color:lavender; width: 450px; height: 150px; margin-left: 50px; margin-top:10px;">
+		
+		<input type="radio" onclick="sel({{add.id}})" name="address" >
+
+		<h4>
+			{{add.house_name}},{{add.town}} {{add.district}}<br>
+			{{add.state}},{{add.pin_code}} mob:{{add.mobile}}</h4>
+		<br><br>
+		<a href="{% url 'addressdelete' pk=add.id %}">Delete</a>
+		<a href="" style="padding-left: 30px;">Edit</a>
+	</div>
+	
+{% endfor %}
+	
+  </div>
+ 
+</div>
+<!--buttn-->
+<div>
+<br>
+<a href="{% url 'addaddress' %}">
+<button type="button" class="btn btn-primary" style="margin-left:50px;">Add address</button>
+</a><br><br>
+<a href="{% url 'index' %}">
+	<button type="button" class="btn btn-dark" style="margin-left:50px;">Cancel</button>
+	</a>
+ </div>
+<br><br>
+
+
+<!--payment-->
+ <div class="row" style="width: 100%;"> 
+	<div class="square" style="background-color:rgb(207, 236, 236); width: 250px; height: 300px; margin-left: 50px;" >
+		<h4 style="color: rgb(23, 82, 8); padding-top: 10px; padding-left:5px;" ><u>Payment Method</u></h4>
+		<br>
+		<h4 style="padding-left: 40px;"><input type="radio" name="pay" id="cod" value="cod">Cash On Delivery</h4>
+		<br>
+		<h4 style="padding-left: 40px;"><input type="radio" name="pay" id="pay" value="paypal"> Pay Pal</h4>
+		<br>
+		<h4 style="padding-left: 40px;"><input type="radio" name="pay" id="raz" value="razorpay" > Razor Pay</h4>
+
+	</div>	
+</div>	
+<!---total-->
+
+	<div class="col-md-4" style="margin-left:;">
+		<div style="margin-right: 3em;" class="shadow card mt-5">
+			<div class="card-body text-center">
+				<h4 class="card-title">AMOUNT DETAILS</h4>
+				<h5 class="card-text">
+					Total Amount for your products:<br>
+				
+					<strong id="total-amount">{{ total }} </strong> rs
+				</h5>
+				<a href="{% url 'checkout' %}">
+					<button style="background-color: rgb(23, 82, 8)" class="btn text-white" onclick="order()">Place order</button>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script>
+	function sel(id){
+		$.ajax({
+			url: '/selectaddress/'+id,
+			method: 'POST',
+
+			success:function(data){
+				if(data=='true'){
+					alert("address selected")
+				}
+			}
+		})
+	}
+</script>
+
+<script>
+function order(){
+	console.log("hello")
+	var value = $("input[type='radio'][name='pay']:checked").val();
+	data = {
+		'value' :value
+	}
+	$.ajax({
+		url:'/orderpayment/',
+		method: 'GET',
+		data :data,
+		datatype :'json',
+		success:function(data){
+			console.log("jaiii")
+			if(data== 'cod'){
+				console.log("ask")
+				window.location.replace('/cod/')
+			}
+			else if(data== 'paypal'){
+				console.log("paypal")
+				window.location.replace('/paypal/')
+			}
+			else if(data== 'razorpay'){
+				window.location.replace('/razorpay/')
+			}
+		}
+	})
+
+}  
+
+</script>
+
+
+</body>
+</html>
+

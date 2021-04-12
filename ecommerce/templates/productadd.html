@@ -1,0 +1,465 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style>
+	.note
+	{
+		text-align: center;
+		padding-top:10px;
+		height: 80px;
+		background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+		color: #fff;
+		font-weight: bold;
+		line-height: 80px;
+	}
+	.form-content
+	{
+		padding: 5%;
+		border: 1px solid #ced4da;
+		margin-bottom: 2%;
+	}
+	.form-control{
+		border-radius:1.5rem;
+	}
+	.btnSubmit
+	{
+		border:none;
+		border-radius:1.5rem;
+		padding: 1%;
+		width: 20%;
+		cursor: pointer;
+		background: #0062cc;
+		color: #fff;
+	}
+	.error{
+		color: darkred;
+		}
+	
+		
+
+</style>
+
+{% extends "main.html" %}
+{% load static %}
+    {% block content %}
+
+<section id="main-content">
+          <section class="wrapper site-min-height">
+          	<h3><i class="fa fa-angle-right"></i> </h3>
+          	<div class="row mt">
+          		<div class="col-lg-12">
+          		
+					
+						<div class="form">
+							<div class="note">
+								<h3>Add Product</h3>
+							</div>
+							<form >
+								
+			
+			
+							<div class="form-content">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+			
+											
+			
+											<input type="text" class="form-control"   placeholder="product_name*" name="product_name" id="product_name"  required="true">
+										</div>
+										
+										  <div class="form-group">
+											<label for="exampleFormControlSelect1"  placeholder="Category"  required="true"></label>
+											<p>Select Category</p>
+											<select class="form-control"  name="product_category" id="product_category" >
+												{% for category in categories %}
+												
+												<option>{{ category.category }}</option>
+													
+												{% endfor %}
+											</select>
+										  </div>
+
+										<div class="form-group">
+											<input type="text" class="form-control" id="description" placeholder="Description"  row="3" name="description" required="true">
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<input type="tel" class="form-control"  placeholder="Price"  name="price" id="price" required="true">
+										</div>
+										
+										  <div class="mb-3 " >
+											<label for="thumbnail">image1</label><br>
+											
+											<img id="cropped" class="cropped" src=""
+												onclick="openImage1()" onchange="preview1()" 
+												style="height: 10rem; width: 10rem;" >
+										
+										
+											<input type="file" name="image1" id="image1"  
+												oninput="cropped.src=window.URL.createObjectURL(this.files[0])" accept="image/*" >
+					
+												<!-- <textarea name="imageurl1" id="imageurl1" cols="30" rows="10" hidden></textarea> -->
+										</div>
+										
+										<div class="mb-3 " >
+											<label for="thumbnail">image2</label><br>
+											<img id="cropped2" class="cropped2" src="" onclick="openImage2()" onchange="preview2()" style="height: 10rem; width: 10rem;">
+					
+											<input type="file" name="image2" id="image2"  
+												oninput="cropped2.src=window.URL.createObjectURL(this.files[0])" accept="image/*">
+												
+												<!-- <textarea name="imageurl2" id="imageurl2" cols="30" rows="10" hidden></textarea> -->
+										</div>
+
+										<div class="mb-3 " >
+											<label for="thumbnail">image3</label><br>
+											<img id="cropped3" class="cropped3" src="" onclick="openImage3()" onchange="preview3()" style="height: 10rem; width: 10rem;">
+					
+											<input type="file" name="image3" id="image3"  
+												oninput="cropped3.src=window.URL.createObjectURL(this.files[0])" accept="image/*">
+												
+												<!-- <textarea name="imageurl3" id="imageurl3" cols="30" rows="10" hidden></textarea> -->
+										</div>
+
+										
+
+								<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+										aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">Crop Image</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+
+											<div class="modal-body">
+												<div class="box-2">
+													<div class="result"></div>
+												</div>
+											</div>
+
+											<div class="modal-footer">
+
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">
+													Close
+												</button>
+
+												<button type="button" id="load" class="btn save btn-primary">
+													Save changes
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+			
+									</div>
+
+									
+
+									<span id="error1" class="error" > </span><br>
+								
+								<button type="button" id="createBtn" style="margin-top: 105%;"  class="btn btn-primary">Submit</button><br><br>
+								<a href="{% url 'adminhome' %} "class="btn btn-danger" style="margin-left: 33%;" data-title="cancel">cancel</a>	
+								
+							</div>
+						  </div>
+						 
+						</div>
+							</form>
+						   
+						</div>
+			</div>
+
+                  
+          		         	</div>
+			
+		</section>
+      </section>    
+
+	 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script> -
+
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+
+	  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cropper/1.0.1/jquery-cropper.min.js" integrity="sha512-V8cSoC5qfk40d43a+VhrTEPf8G9dfWlEJgvLSiq2T2BmgGRmZzB8dGe7XAABQrWj3sEfrR5xjYICTY4eJr76QQ==" crossorigin="anonymous"></script> -->
+
+	 <!-- croperjs -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css">
+
+	 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script> -->
+
+	  <!--image1-->
+	  <script>
+        var imgSrc;
+        let result = document.querySelector(".result"),
+            save = document.querySelector(".save"),
+            cropped = document.querySelector(".cropped"),
+            upload = document.querySelector("#image1"),
+            cropper = "";
+
+        upload.addEventListener("change", (e) => {
+			console.log("ashuj")
+            if (e.target.files.length) {
+                // start file reader
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    if (e.target.result) {
+                        // create new image
+                        $("#exampleModalCenter").modal("show");
+                        let img = document.createElement("img");
+                        img.id = "image";
+                        img.src = e.target.result;
+
+                        // clean result before
+                        result.innerHTML = "";
+                        // append new image
+
+                        result.appendChild(img);
+                        // init cropper
+                        cropper = new Cropper(img, {
+                            viewMode: 2,
+                            aspectRatio: 5 / 5,
+                            autoCropArea: 1,
+							cropBoxResizable: false,
+                            crop: function (e) {
+                                console.log(e.detail.x);
+                                console.log(e.detail.y);
+                            }
+                        });
+
+                    }
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        save.addEventListener("click", (e) => {
+            e.preventDefault();
+            // get result to data uri
+            imgSrc = cropper
+                .getCroppedCanvas({
+                    width: 300, // img disp value
+                })
+                .toDataURL();
+            $("#exampleModalCenter").modal("hide");
+            cropped.src = imgSrc;
+
+        });
+
+
+		function openImage1() {
+			
+			$('#image1').click()
+		}
+
+
+    </script>
+
+<!---image2-->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css"> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script> 
+
+
+<script>
+	var imgSrc2;
+	let result2 = document.querySelector(".result"),
+		save2 = document.querySelector(".save"),
+		cropped2 = document.querySelector(".cropped2"),
+		upload2 = document.querySelector("#image2"),
+		cropper2 = "";
+
+	upload2.addEventListener("change", (e) => {
+		
+		if (e.target.files.length) {
+			// start file reader
+			const reader = new FileReader();
+
+			reader.onload = (e) => {
+				if (e.target.result) {
+					// create new image
+					$("#exampleModalCenter").modal("show");
+					let img2 = document.createElement("img");
+					img2.id = "image";
+					img2.src = e.target.result;
+
+					// clean result before
+					result2.innerHTML = "";
+					// append new image
+
+					result2.appendChild(img2);
+					// init cropper
+					cropper2 = new Cropper(img2, {
+						viewMode: 2,
+						aspectRatio: 5 / 5,
+						autoCropArea: 1,
+						cropBoxResizable: false,
+						crop: function (e) {
+							console.log(e.detail.x);
+							console.log(e.detail.y);
+						}
+					});
+
+				}
+			};
+			reader.readAsDataURL(e.target.files[0]);
+		}
+	});
+
+	save2.addEventListener("click", (e) => {
+		e.preventDefault();
+		// get result to data uri
+		imgSrc2 = cropper2.getCroppedCanvas({
+				width: 300, // img disp value
+			})
+			.toDataURL();
+		$("#exampleModalCenter").modal("hide");
+		cropped2.src = imgSrc2;
+
+	});
+
+
+	function openImage2() {
+		
+		$('#image2').click()
+	}
+
+
+</script>
+
+<!---image3-->
+
+
+
+<script>
+	var imgSrc3;
+	let result3 = document.querySelector(".result"),
+		save3 = document.querySelector(".save"),
+		cropped3 = document.querySelector(".cropped3"),
+		upload3 = document.querySelector("#image3"),
+		cropper3 = "";
+
+	upload3.addEventListener("change", (e) => {
+		
+		if (e.target.files.length) {
+			// start file reader
+			const reader = new FileReader();
+
+			reader.onload = (e) => {
+				if (e.target.result) {
+					// create new image
+					$("#exampleModalCenter").modal("show");
+					let img3 = document.createElement("img");
+					img3.id = "image";
+					img3.src = e.target.result;
+
+					// clean result before
+					result3.innerHTML = "";
+					// append new image
+
+					result3.appendChild(img3);
+					// init cropper
+					cropper3 = new Cropper(img3, {
+						viewMode: 2,
+						aspectRatio: 5 / 5,
+						autoCropArea: 1,
+						cropBoxResizable: false,
+						crop: function (e) {
+							console.log(e.detail.x);
+							console.log(e.detail.y);
+						}
+					});
+
+				}
+			};
+			reader.readAsDataURL(e.target.files[0]);
+		}
+	});
+
+	save3.addEventListener("click", (e) => {
+		e.preventDefault();
+		// get result to data uri
+		imgSrc3 = cropper3.getCroppedCanvas({
+				width: 300, // img disp value
+			})
+			.toDataURL();
+		$("#exampleModalCenter").modal("hide");
+		cropped3.src = imgSrc3;
+
+	});
+
+
+	function openImage3() {
+		
+		$('#image3').click()
+	}
+
+
+</script>
+
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+<script>
+	$('#createBtn').click(function(){
+		var formData = new FormData();
+		formData.append("product_name", document.getElementById("product_name").value);
+		formData.append("product_category", document.getElementById("product_category").value);
+		formData.append("description", document.getElementById("description").value);
+		formData.append("price", document.getElementById("price").value);
+		formData.append("image1",imgSrc);
+		console.log(image1, 'zxcvbnm.........')
+		formData.append("image2",imgSrc2);
+		formData.append("image3",imgSrc3);             
+
+		formData.append('csrfmiddlewaretoken', '{{csrf_token}}');
+
+		var ext = image1.value.split(".")
+		ext = ext[ext.length - 1].toLowerCase();
+  		var arrayExtensions = ["jpg", "png", "svg", "jpeg"];
+
+		  if (image1.value == '') {
+			$('#message').html('Upload Thumbnail')
+			console.log("askkkk")
+		}
+		
+		else{
+			console.log("haud")
+			$.ajax({
+				url: '/admin1/productadd/',
+				type: 'POST',
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: 'JSON',
+				success: function(data){
+					if (data == 'true'){
+						window.location.replace('/admin1/productadd/')
+					}
+				}
+
+
+			})
+		}
+		
+		
+	})
+</script>
+
+
+
+
+	  {% endblock %}
+
+
+	  
